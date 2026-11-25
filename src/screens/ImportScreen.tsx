@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { CALIBERS, TARGETS, getTarget } from '../targets/definitions';
 import { loadImageFile } from '../imageUtils';
+import { NumberField } from '../components/NumberField';
 import type { Settings } from '../model';
 
 export interface Setup {
@@ -85,14 +86,7 @@ export function ImportScreen({ settings, onSettings, onStart }: Props) {
         <div className="form-row">
           <label>
             Distance (m)
-            <input
-              type="number"
-              inputMode="decimal"
-              min={1}
-              step={1}
-              value={distanceM}
-              onChange={(e) => setDistanceM(parseFloat(e.target.value) || 0)}
-            />
+            <NumberField min={1} value={distanceM} onChange={setDistanceM} />
           </label>
           <label>
             Caliber
@@ -110,14 +104,7 @@ export function ImportScreen({ settings, onSettings, onStart }: Props) {
           </label>
           <label>
             Bullet Ø (mm)
-            <input
-              type="number"
-              inputMode="decimal"
-              min={1}
-              step={0.01}
-              value={caliberMm}
-              onChange={(e) => setCaliberMm(parseFloat(e.target.value) || 0)}
-            />
+            <NumberField min={1} value={caliberMm} onChange={setCaliberMm} />
           </label>
         </div>
       </section>

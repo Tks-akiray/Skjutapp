@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ZoomCanvas } from '../components/ZoomCanvas';
+import { NumberField } from '../components/NumberField';
 import { useBitmap } from '../components/useBitmap';
 import { getTarget } from '../targets/definitions';
 import { vision } from '../vision/client';
@@ -276,15 +277,15 @@ export function CalibrateScreen({ setup, settings, onSettings, onBack, onDone }:
             <div className="form-row">
               <label>
                 Square size (mm)
-                <input type="number" min={0.1} step={0.1} value={squareMm} onChange={(e) => setSquareMm(parseFloat(e.target.value) || 0)} />
+                <NumberField min={0.1} value={squareMm} onChange={setSquareMm} />
               </label>
               <label>
                 Squares across in marked area
-                <input type="number" min={1} step={1} value={squaresX} onChange={(e) => setSquaresX(parseInt(e.target.value) || 0)} />
+                <NumberField integer min={1} value={squaresX} onChange={setSquaresX} />
               </label>
               <label>
                 Squares down in marked area
-                <input type="number" min={1} step={1} value={squaresY} onChange={(e) => setSquaresY(parseInt(e.target.value) || 0)} />
+                <NumberField integer min={1} value={squaresY} onChange={setSquaresY} />
               </label>
             </div>
             <p className="scale-summary">
@@ -303,7 +304,7 @@ export function CalibrateScreen({ setup, settings, onSettings, onBack, onDone }:
           <div className="form-row">
             <label>
               Distance between points (mm)
-              <input type="number" min={0.1} step={0.1} value={scaleMm} onChange={(e) => setScaleMm(parseFloat(e.target.value) || 0)} />
+              <NumberField min={0.1} value={scaleMm} onChange={setScaleMm} />
             </label>
             <button type="button" disabled={points.length === 0} onClick={() => setPoints([])}>
               Clear points
