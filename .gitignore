@@ -1,0 +1,6 @@
+node_modules
+dist
+dev-dist
+*.tsbuildinfo
+# Personal target photos (used for local tuning only)
+Pictures/
